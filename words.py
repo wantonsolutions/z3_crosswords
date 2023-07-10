@@ -42,6 +42,8 @@ def clean_english_words_list(lines):
             continue
         if "-" in line:
             continue
+        if any(char.isdigit() for char in line):
+            continue
         line = line.lower()
         output_lines.append(line)
     return output_lines
