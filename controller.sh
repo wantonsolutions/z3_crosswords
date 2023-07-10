@@ -17,11 +17,13 @@ echo "Running controller for puzzle $n"
 
 system_cores=`grep -c ^processor /proc/cpuinfo`
 echo "System has $system_cores cores"
+let "system_cores -= 2"
+echo "going to run on $system_cores cores"
 
 hostname=`hostname`
 echo "running on $hostname"
 
-for i in `seq 1 $n`;
+for i in `seq 1 $system_cores`;
 do
     echo "Starting puzzle solver $i"
     python z3_crossword.py $n > "${hostname}_${i}_cxwords.out" &
